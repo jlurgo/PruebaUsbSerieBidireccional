@@ -18,7 +18,7 @@ var onDeviceReady = function() {
 					serial.write(
 						JSON.stringify({
 							estadoBoton:"presionado"
-						}),
+						})+"\n",
 						function(successMessage) {
 							console.log(successMessage);
 						},
@@ -32,7 +32,7 @@ var onDeviceReady = function() {
 					serial.write(
 						JSON.stringify({
 							estadoBoton:"suelto"
-						}),
+						})+"\n",
 						function(successMessage) {
 							console.log(successMessage);
 						},
@@ -44,8 +44,11 @@ var onDeviceReady = function() {
 				
 				serial.registerReadCallback(
 					function(data){
+						console.log("recibido:", data);
+						console.log("recibido:", JSON.stringify(data));
+						console.log("recibido:", data.toString());
 						var view = new Uint8Array(data);
-						console.log("recibido por puerto serie:", view);
+						console.log("recibido:", view);
 					},
 					function(err){
 						console.log("error al registrar callback:", err);
