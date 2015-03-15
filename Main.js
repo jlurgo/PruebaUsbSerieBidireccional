@@ -17,7 +17,7 @@ var onDeviceReady = function() {
 				$("#btn_enviar").bind('touchstart', function(){
 					var mensaje = JSON.stringify({
 							estadoBoton:"presionado"
-						})+'\n';
+						})+'|';
 					console.log(mensaje);
 					serial.write(
 						mensaje,
@@ -33,7 +33,7 @@ var onDeviceReady = function() {
 				$("#btn_enviar").bind('touchend', function(){
 					var mensaje = JSON.stringify({
 							estadoBoton:"suelto"
-						})+'\n';
+						})+'|';
 					console.log(mensaje);
 					serial.write(
 						mensaje,

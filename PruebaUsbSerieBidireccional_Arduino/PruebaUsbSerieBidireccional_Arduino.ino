@@ -45,7 +45,7 @@ void loop(void)
 void serialEvent() {
 	while (Serial.available()) {  
 		char byte_leido = Serial.read();
-		if(byte_leido == '\n' || byte_leido == '\r'){
+		if(byte_leido == '\n' || byte_leido == '\r' || byte_leido == '|'){
 			aJsonObject *msg = aJson.parse(buffer_entrada);	
 			if (msg) {
 				aJsonObject *estadoBoton = aJson.getObjectItem(msg, "estadoBoton");
