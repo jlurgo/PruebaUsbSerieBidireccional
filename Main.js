@@ -15,10 +15,12 @@ var onDeviceReady = function() {
 			function(successMessage) {
 				console.log("puerto serie abierto:", successMessage);
 				$("#btn_enviar").bind('touchstart', function(){
-					serial.write(
-						JSON.stringify({
+					var mensaje = JSON.stringify({
 							estadoBoton:"presionado"
-						})+"\n",
+						})+'\n';
+					console.log(mensaje);
+					serial.write(
+						mensaje,
 						function(successMessage) {
 							console.log(successMessage);
 						},
@@ -29,10 +31,12 @@ var onDeviceReady = function() {
 				});
 
 				$("#btn_enviar").bind('touchend', function(){
-					serial.write(
-						JSON.stringify({
+					var mensaje = JSON.stringify({
 							estadoBoton:"suelto"
-						})+"\n",
+						})+'\n';
+					console.log(mensaje);
+					serial.write(
+						mensaje,
 						function(successMessage) {
 							console.log(successMessage);
 						},
