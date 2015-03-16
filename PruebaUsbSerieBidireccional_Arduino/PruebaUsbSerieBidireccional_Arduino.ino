@@ -60,6 +60,7 @@ void serialEvent() {
 			}
 			blanquearBufferEntrada();
 			ultimo_byte_entrada = 0;
+			aJson.deleteItem(msg);
 		}else{      
 			buffer_entrada[ultimo_byte_entrada] = byte_leido;	
 			ultimo_byte_entrada++;

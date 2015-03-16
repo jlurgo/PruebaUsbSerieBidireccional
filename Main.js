@@ -48,11 +48,8 @@ var onDeviceReady = function() {
 				
 				serial.registerReadCallback(
 					function(data){
-						console.log("recibido:", data);
-						console.log("recibido:", JSON.stringify(data));
-						console.log("recibido:", data.toString());
 						var view = new Uint8Array(data);
-						console.log("recibido:", view);
+						console.log("recibido:", String.fromCharCode.apply(null, view));
 					},
 					function(err){
 						console.log("error al registrar callback:", err);
