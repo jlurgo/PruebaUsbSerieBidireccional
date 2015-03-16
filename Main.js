@@ -63,7 +63,7 @@ var onDeviceReady = function() {
 						var view = new Uint8Array(data);
 						buffer_entrada_serie += String.fromCharCode.apply(null, view);
 						console.log("recibido:", String.fromCharCode.apply(null, view));
-						var mensajes_en_buffer = recibido_serie.split('|');
+						var mensajes_en_buffer = buffer_entrada_serie.split('|');
 						if(mensajes_en_buffer.length>1){
 							recibir_mensaje(mensajes_en_buffer[0]);
 							buffer_entrada_serie = "";
