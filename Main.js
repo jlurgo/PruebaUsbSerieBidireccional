@@ -61,7 +61,7 @@ var onDeviceReady = function() {
 				serial.registerReadCallback(
 					function(data){
 						var view = new Uint8Array(data);
-						recibido_serie += String.fromCharCode.apply(null, view);
+						buffer_entrada_serie += String.fromCharCode.apply(null, view);
 						console.log("recibido:", String.fromCharCode.apply(null, view));
 						var mensajes_en_buffer = recibido_serie.split('|');
 						if(mensajes_en_buffer.length>1){
