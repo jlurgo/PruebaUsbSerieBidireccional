@@ -30,14 +30,18 @@ void blanquearBufferEntrada(void){
 
 void loop(void)
 {
-	// read the state of the pushbutton value:
 	estadoActualBoton = digitalRead(buttonPin);
 
 	if(estadoActualBoton != estadoAnteriorBoton)
 	{
-		String mensaje = "";
-		mensaje = mensaje + "{\"estadoBoton\":\"" + estados_boton[estadoActualBoton] + "\"}|";
-		Serial.println(mensaje);
+		aJsonObject *mensaje;
+    	mensaje=aJson.createObject();  
+    	aJson.addItemToObject(mensaje, "estadoBoton", aJson.createItem(estados_boton[estadoActualBoton]));
+		char *json = aJson.print(mensaje);
+		Serial.print(json);
+		Serial.write('|');
+		free(json);
+		aJson.deleteItem(mensaje);
 	}
 	estadoAnteriorBoton = estadoActualBoton;
 }
