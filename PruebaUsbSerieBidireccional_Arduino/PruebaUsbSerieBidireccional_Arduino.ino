@@ -7,7 +7,7 @@ const int ledPin =  3;      // the number of the LED pin
 int estadoAnteriorBoton = 0;
 int estadoActualBoton = 0;
 
-const char* estados_boton[] = { "presionado", "suelto"};
+const char* estados_boton[] = { "suelto", "presionado"};
 
 char buffer_entrada[256];
 int ultimo_byte_entrada = 0;
