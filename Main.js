@@ -11,7 +11,7 @@ var onDeviceReady = function() {
 	};
 	
 	var abrirPuertoSerie = function(){
-		serial.open ({baudRate: 57600},
+		serial.open ({baudRate: 115200},
 			function(successMessage) {
 				console.log("puerto serie abierto:", successMessage);
 				$("#btn_enviar").bind('touchstart', function(){
