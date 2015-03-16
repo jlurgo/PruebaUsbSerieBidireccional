@@ -46,10 +46,32 @@ var onDeviceReady = function() {
 					);	
 				});
 				
+				var recibir_mensaje = function(mensaje_str){
+					var mensaje;
+					try{
+						mensaje = JSON.parse(mensaje_str);
+					}catch(err){
+						console.log("error al parsear:", mensaje_str);
+					}
+					if(mensaje.estadoBoton == "presionado")	$("#led").addClass("led_encendido");
+					if(mensaje.estadoBoton == "suelto")	$("#led").removeClass("led_encendido");
+				};
+			
+				var buffer_entrada_serie = "";
 				serial.registerReadCallback(
 					function(data){
 						var view = new Uint8Array(data);
+						recibido_serie += String.fromCharCode.apply(null, view);
 						console.log("recibido:", String.fromCharCode.apply(null, view));
+						var mensajes_en_buffer = recibido_serie.split('|');
+						if(mensajes_en_buffer.length>1){
+							recibir_mensaje(mensajes_en_buffer[0]);
+							buffer_entrada_serie = "";
+							for(var i=1; i<mensajes_en_buffer.length; i++){
+								buffer_entrada_serie+=mensajes_en_buffer[i] + "|";
+							}
+							buffer_entrada_serie = buffer_entrada_serie.substring(0,buffer_entrada_serie.length-2);
+						}						
 					},
 					function(err){
 						console.log("error al registrar callback:", err);
@@ -62,8 +84,8 @@ var onDeviceReady = function() {
 		);
 	};
 	
-	serial.requestPermission(//{vid: '0x2341', pid: '0x0001'}, 
-							 function(successMessage) {
+	serial.requestPermission(
+		 function(successMessage) {
 			console.log("permiso concedido para usar puerto serie:", successMessage);
 			serial.close(function(){
 				console.log("puerto serie cerrado");

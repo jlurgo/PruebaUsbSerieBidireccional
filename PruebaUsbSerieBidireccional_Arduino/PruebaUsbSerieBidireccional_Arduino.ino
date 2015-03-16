@@ -36,7 +36,7 @@ void loop(void)
 	if(estadoActualBoton != estadoAnteriorBoton)
 	{
 		String mensaje = "";
-		mensaje = mensaje + "{\"estadoBoton\":\"" + estados_boton[estadoActualBoton] + "\"}";
+		mensaje = mensaje + "{\"estadoBoton\":\"" + estados_boton[estadoActualBoton] + "\"}|";
 		Serial.println(mensaje);
 	}
 	estadoAnteriorBoton = estadoActualBoton;
